@@ -1,3 +1,6 @@
-node-modules/
+#Ignore these directories
+node-modules
+ 
+#ignore these files
 .DS_Store
 npm-debug.log
