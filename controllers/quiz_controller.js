@@ -56,7 +56,8 @@ exports.new = function(req, res) {
     // crea objeto quiz
     var quiz = models.Quiz.build( {
         pregunta : "Pregunta",
-        respuesta: "Respuesta"
+        respuesta: "Respuesta",
+        tema: "Tema"
     });
     res.render('quizes/new', {
         quiz: quiz,
@@ -79,7 +80,7 @@ exports.create = function(req, res, next) {
         {
             // guarda en DB los campos "pregunta" y "respuesta" de quiz
             quiz.save( {
-                fields: ["pregunta", "respuesta"]
+                fields: ["pregunta", "respuesta", "tema"]
             }).then(function() {
                 // redirección HTTP a lista de preguntas
                 res.redirect('/quizes');
@@ -102,6 +103,7 @@ exports.edit = function(req, res) {
 exports.update = function(req, res, next) {
     req.quiz.pregunta  = req.body.quiz.pregunta;
     req.quiz.respuesta = req.body.quiz.respuesta;
+    req.quiz.tema = req.body.quiz.tema;
     req.quiz.validate().then(function(err) {
         if (err)
         {
@@ -114,7 +116,7 @@ exports.update = function(req, res, next) {
         {
             // guarda en DB los campos "pregunta" y "respuesta" de req.quiz
             req.quiz.save( {
-                fields: ["pregunta", "respuesta"]
+                fields: ["pregunta", "respuesta", "tema"]
             }).then( function() {
                 // redirección HTTP a lista de preguntas
                 res.redirect('/quizes');

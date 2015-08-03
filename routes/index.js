@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
 router.param('quizId', quizController.load);
 
 router.get('/author', function(req, res) {
-  res.render('author', { title: 'Author' });
+  res.render('author', { title: 'Author', errors: [] });
 });
 
 /* Definición de rutas de /quizes */
